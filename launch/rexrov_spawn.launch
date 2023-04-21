@@ -1,0 +1,21 @@
+<launch>
+  <arg name="joy_id" default="0"/>
+
+    <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+  <include file="$(find uuv_gazebo_worlds)/launch/vtrupdate.launch"/>
+    <arg name="x" default="-1"/>
+    <arg name="y" default="-1"/>
+    <arg name="z" default="-40"/>
+    <arg name="angle" default="0"/>
+  </include>
+  <node name="sdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+          args="-sdf -x $(arg x) -y $(arg y) -z $(arg z) -P 1.57 -Y $(arg angle) -model rov_bop_panel -database rov_bop_panel"/>
+
+
+  <include file="$(find uuv_gazebo)/launch/rexrov_demos/rexrov_default.launch">
+    <arg name="x" value="0"/>
+    <arg name="y" value="0"/>
+    <arg name="z" value="-41"/>
+    <arg name="joy_id" value="$(arg joy_id)"/>
+  </include>
+</launch>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+
+<node pkg="sematicmaker" type="Semanticmapmaker.py" name="map" output="screen"/> 
+<node pkg="sematicmaker" type="objectdetector.py" name="orb_obj" output="screen"/>
+<node pkg="sematicmaker" type="visualizer" name="visual" />
+<node pkg="rviz" type="rviz" name="show_visual" />
+
+</launch>
